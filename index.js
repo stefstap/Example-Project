@@ -53,8 +53,8 @@ window.addEventListener('resize', () => {
 });
 
 function animate() {
-    cubeMesh1.rotation.x += 0.01;
-    cubeMesh1.rotation.z += 0.01;
+    cubeMesh1.rotation.x += 0.05;
+    cubeMesh1.rotation.z += 0.05;
 
     
     
@@ -62,8 +62,8 @@ function animate() {
     cubeMesh2.rotation.x += 0.01;
     cubeMesh2.rotation.z += 0.01;
 
-    cubeMesh3.rotation.x += 0.01;
-    cubeMesh3.rotation.z += 0.01;
+    cubeMesh3.rotation.x += 0.03;
+    cubeMesh3.rotation.z += 0.03;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
