@@ -33,23 +33,29 @@ cubeMesh2.position.x = -1;
         height: 600,
     }
     
-    const camera = new PerspectiveCamera(75, sizes.width/ sizes.height);
-    camera.position.z = 2;
-    scene.add( camera );
+    
 
     const canvas = document.getElementById('three-canvas');
-const renderer = new WebGLRenderer({
-    canvas: canvas,
-});
+    const camera = new PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight);
+    camera.position.z = 3;
+    scene.add( camera );
+const renderer = new WebGLRenderer({ canvas: canvas,});
+renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
-renderer.setSize(sizes.width, sizes.height);
+
 renderer.render(scene, camera);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-
+window.addEventListener('resize', () => {
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+});
 
 function animate() {
     cubeMesh1.rotation.x += 0.01;
     cubeMesh1.rotation.z += 0.01;
+
     
     
 
