@@ -1,10 +1,43 @@
-import { 
-    Scene, 
-    BoxGeometry, 
-    MeshBasicMaterial, 
-    Mesh, 
-    PerspectiveCamera, 
-    WebGLRenderer } from 'three';
+import {
+    Scene,
+    BoxGeometry,
+    MeshBasicMaterial,
+    Mesh,
+    PerspectiveCamera,
+    WebGLRenderer,
+    MOUSE,
+    Vector2,
+    Vector3,
+    Vector4,
+    Quaternion,
+    Matrix4,
+    Spherical,
+    Box3,
+    Sphere,
+    Raycaster,
+    MathUtils,
+    Clock
+} from 'three';
+import CameraControls from 'camera-controls';
+
+const subsetOfTHREE = {
+    MOUSE,
+    Vector2,
+    Vector3,
+    Vector4,
+    Quaternion,
+    Matrix4,
+    Spherical,
+    Box3,
+    Sphere,
+    Raycaster,
+    MathUtils: {
+      DEG2RAD: MathUtils.DEG2RAD,
+      clamp: MathUtils.clamp
+    }
+  };
+
+
     
     // 1 The scene
     const scene = new Scene()
@@ -37,6 +70,10 @@ cubeMesh2.position.x = -1;
 
     const canvas = document.getElementById('three-canvas');
     const camera = new PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight);
+
+ 
+
+
     camera.position.z = 3;
     scene.add( camera );
 const renderer = new WebGLRenderer({ canvas: canvas,});
@@ -52,22 +89,19 @@ window.addEventListener('resize', () => {
     renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 });
 
+
+   // Controls
+   CameraControls.install( { THREE: subsetOfTHREE } );
+   const clock = new Clock();
+   const cameraControls = new CameraControls(camera, canvas);
+cameraControls.dollyToCursor= true;
+
 function animate() {
-    cubeMesh1.rotation.x += 0.05;
-    cubeMesh1.rotation.z += 0.05;
-
-    
-    
-
-    cubeMesh2.rotation.x += 0.01;
-    cubeMesh2.rotation.z += 0.01;
-
-    cubeMesh3.rotation.x += 0.03;
-    cubeMesh3.rotation.z += 0.03;
-
-    renderer.render(scene, camera);
+    const delta = clock.getDelta();
+      cameraControls.update( delta );
+      renderer.render( scene, camera );
     requestAnimationFrame(animate);
- }
+  }
  
  animate();
 
