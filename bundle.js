@@ -31015,9 +31015,9 @@ const subsetOfTHREE = {
     const scene = new Scene();
     
     // 2 The Object
-    const geometry = new BoxGeometry(0.5, 0.5, 0.5);
+    const geometry = new BoxGeometry(1, 1, 1);
     const material1 = new MeshBasicMaterial( {color: 'orange'} );
-    const material2 = new MeshBasicMaterial( {color: 'blue'});
+    const material2 = new MeshBasicMaterial( {color: 'white'});
     const material3 = new MeshBasicMaterial( {color: 'red'});
     
     
@@ -31025,8 +31025,8 @@ const subsetOfTHREE = {
     const cubeMesh2 = new Mesh( geometry, material2 );
     const cubeMesh3 = new Mesh( geometry, material3 );
 
-cubeMesh1.position.x = 1;
-cubeMesh2.position.x = -1;
+cubeMesh1.position.x = 2;
+cubeMesh2.position.x = -2;
 
     scene.add( cubeMesh1 );
     scene.add( cubeMesh2 );

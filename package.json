@@ -2,10 +2,11 @@
   "name": "example-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "build": "rollup -c",
-    "watch": "rollup -c -w"
+    "watch": "rollup -c -w",
+    "start": "electron ."
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.0",
+    "electron": "^21.2.0",
     "rollup": "^3.1.0"
   }
 }
